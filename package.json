@@ -1,0 +1,18 @@
+{
+  "name": "super-cafe",
+  "version": "0.1.0",
+  "author": "henryaquino",
+  "license": "MIT",
+  "private": true,
+  "scripts": {
+    "start": "node app.js"
+  },
+  "devDependencies": {
+    "prettier": "2.8.1"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^16.0.3",
+    "express": "^4.18.2"
+  }
+}
