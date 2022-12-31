@@ -1,8 +1,8 @@
 const User = require('../collections/user')
 
-const createUser = async (data) => {
+const createUser = async ({ name, email, password }) => {
   try {
-    const user = new User(data)
+    const user = new User({ name, email, password })
     await user.save()
     return user
   } catch (error) {
