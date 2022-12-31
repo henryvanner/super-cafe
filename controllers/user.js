@@ -1,12 +1,12 @@
 const userServices = require('../services/user')
 
 /** @type {import('express').RequestHandler} */
-const getUser = (req, res) => {
+const handleGetRequest = (req, res) => {
   res.send('GET user ' + req.params.id)
 }
 
 /** @type {import('express').RequestHandler} */
-const postUser = async (req, res) => {
+const handlePostRequest = async (req, res) => {
   try {
     const user = await userServices.createUser(req.body)
     res.send(user)
@@ -16,18 +16,18 @@ const postUser = async (req, res) => {
 }
 
 /** @type {import('express').RequestHandler} */
-const putUser = (req, res) => {
+const handlePutRequest = (req, res) => {
   res.send('PUT user ' + req.params.id)
 }
 
 /** @type {import('express').RequestHandler} */
-const deleteUser = (req, res) => {
+const handleDeleteRequest = (req, res) => {
   res.send('DELETE user ' + req.params.id)
 }
 
 module.exports = {
-  post: postUser,
-  get: getUser,
-  put: putUser,
-  delete: deleteUser,
+  handlePostRequest,
+  handleGetRequest,
+  handlePutRequest,
+  handleDeleteRequest,
 }
