@@ -5,9 +5,10 @@
   "license": "MIT",
   "private": true,
   "scripts": {
-    "start": "node app.js"
+    "start": "nodemon app.js"
   },
   "devDependencies": {
+    "nodemon": "^2.0.20",
     "prettier": "2.8.1"
   },
   "dependencies": {
