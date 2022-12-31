@@ -1,11 +1,19 @@
+const User = require('../collections/user')
+
 /** @type {import('express').RequestHandler} */
 const getUser = (req, res) => {
   res.send('GET user ' + req.params.id)
 }
 
 /** @type {import('express').RequestHandler} */
-const postUser = (req, res) => {
-  res.send('POST user ' + JSON.stringify(req.body))
+const postUser = async (req, res) => {
+  try {
+    const user = new User(req.body)
+    await user.save()
+    res.send(user)
+  } catch (error) {
+    res.status(400).send('Malformed payload')
+  }
 }
 
 /** @type {import('express').RequestHandler} */
