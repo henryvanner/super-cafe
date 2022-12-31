@@ -1,4 +1,4 @@
-const User = require('../collections/user')
+const userServices = require('../services/user')
 
 /** @type {import('express').RequestHandler} */
 const getUser = (req, res) => {
@@ -8,11 +8,10 @@ const getUser = (req, res) => {
 /** @type {import('express').RequestHandler} */
 const postUser = async (req, res) => {
   try {
-    const user = new User(req.body)
-    await user.save()
+    const user = await userServices.createUser(req.body)
     res.send(user)
   } catch (error) {
-    res.status(400).send('Malformed payload')
+    res.status(400).send(error.message)
   }
 }
 
