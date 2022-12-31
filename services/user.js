@@ -1,8 +1,13 @@
+const bcryptjs = require('./bcrypt')
 const User = require('../collections/user')
 
 const createUser = async ({ name, email, password }) => {
   try {
-    const user = new User({ name, email, password })
+    const user = new User({
+      name,
+      email,
+      password: bcryptjs.encryptPassword(password),
+    })
     await user.save()
     return user
   } catch (error) {
