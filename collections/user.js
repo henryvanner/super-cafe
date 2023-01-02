@@ -26,6 +26,7 @@ const schema = new Schema({
 
 // override method to filter the data being retrieved
 schema.methods.toJSON = function () {
+  const userData = this.toObject()
   const dataSafeToShare = [
     '_id',
     'name',
@@ -33,7 +34,7 @@ schema.methods.toJSON = function () {
     'isActive',
     'signedUpWithGoogle',
   ]
-  return pick(this.toObject(), dataSafeToShare)
+  return pick(userData, dataSafeToShare)
 }
 
 module.exports = model('User', schema)
