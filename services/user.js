@@ -1,6 +1,8 @@
 const bcryptjs = require('./bcrypt')
 const User = require('../collections/user')
 
+const findUserByEmail = async (email) => await User.findOne({ email })
+
 const createUser = async ({ name, email, password }) => {
   try {
     const user = new User({
@@ -17,4 +19,5 @@ const createUser = async ({ name, email, password }) => {
 
 module.exports = {
   createUser,
+  findUserByEmail,
 }
