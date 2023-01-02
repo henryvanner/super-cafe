@@ -8,7 +8,7 @@ const emailIsAvailable = async (email = '') => {
   }
 }
 
-const validateResult = (req, res, next) => {
+const checkValidationsPassed = (req, res, next) => {
   const errors = validationResult(req)
   if (!errors.isEmpty()) {
     return res.status(400).json(errors)
@@ -16,14 +16,14 @@ const validateResult = (req, res, next) => {
   next()
 }
 
-const validators = [
+const validations = [
   check('name', '`name` is mandatory').not().isEmpty(),
   check('email', '`email` is not a valid email').isEmail(),
   check('email').custom(emailIsAvailable),
   check('password', '`password` must have more than six characters').isLength({
     min: 6,
   }),
-  validateResult,
+  checkValidationsPassed,
 ]
 
-module.exports = validators
+module.exports = validations
