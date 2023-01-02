@@ -1,3 +1,4 @@
+const { pick } = require('lodash')
 const { Schema, model } = require('mongoose')
 
 const schema = new Schema({
@@ -22,5 +23,17 @@ const schema = new Schema({
     default: false,
   },
 })
+
+// override method to filter the data being retrieved
+schema.methods.toJSON = function () {
+  const dataSafeToShare = [
+    '_id',
+    'name',
+    'email',
+    'isActive',
+    'signedUpWithGoogle',
+  ]
+  return pick(this.toObject(), dataSafeToShare)
+}
 
 module.exports = model('User', schema)
