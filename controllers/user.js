@@ -11,7 +11,8 @@ const handlePostRequest = async (req, res) => {
     const user = await userServices.createUser(req.body)
     res.send(user)
   } catch (error) {
-    res.status(400).send(error.message)
+    console.log(error)
+    res.status(500).end()
   }
 }
 
