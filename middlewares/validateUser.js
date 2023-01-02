@@ -4,7 +4,7 @@ const userServices = require('../services/user')
 const emailIsAvailable = async (email = '') => {
   const user = await userServices.findUserByEmail(email)
   if (user) {
-    throw new Error('`email` is already in used')
+    throw new Error('`email` is already in use')
   }
 }
 
