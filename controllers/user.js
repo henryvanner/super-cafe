@@ -1,7 +1,15 @@
 const userServices = require('../services/user')
 
-const handleGetRequest = (req, res) => {
-  res.send('GET user ' + req.params.id)
+const handleGetRequest = async (req, res) => {
+  try {
+    const { id } = req.params
+    const user = await userServices.findUserById(id)
+    if (!user) return res.status(404).end()
+    return res.json(user)
+  } catch (error) {
+    console.log(error)
+    res.status(500).end()
+  }
 }
 
 const handlePostRequest = async (req, res) => {
