@@ -1,4 +1,4 @@
-const { check, validationResult } = require('express-validator')
+const { body, validationResult } = require('express-validator')
 const userServices = require('../services/user')
 
 const emailIsAvailable = async (email = '') => {
@@ -17,10 +17,10 @@ const checkValidationsPassed = (req, res, next) => {
 }
 
 const validations = [
-  check('name', '`name` is mandatory').not().isEmpty(),
-  check('email', '`email` is not a valid email').isEmail(),
-  check('email').custom(emailIsAvailable),
-  check('password', '`password` must have more than six characters').isLength({
+  body('name', '`name` is mandatory').not().isEmpty(),
+  body('email', '`email` is not a valid email').isEmail(),
+  body('email').custom(emailIsAvailable),
+  body('password', '`password` must have more than six characters').isLength({
     min: 6,
   }),
   checkValidationsPassed,
