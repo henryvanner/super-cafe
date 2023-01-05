@@ -9,7 +9,7 @@ services:
       - .:/app
   mongo:
     image: mongo
-    # publish the port for development purposes only
+    # publish the port for development purposes only (DO NOT do it in production)
     ports:
       - '27017:27017'
     environment:
