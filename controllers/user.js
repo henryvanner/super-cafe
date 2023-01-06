@@ -1,9 +1,9 @@
-const userServices = require('../services/user')
+const User = require('../collections/user')
 
 const handleGetRequest = async (req, res) => {
   try {
     const { id } = req.params
-    const user = await userServices.findUserById(id)
+    const user = await User.findById(id)
     if (!user) return res.status(404).end()
     return res.json(user)
   } catch (error) {

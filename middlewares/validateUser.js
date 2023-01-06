@@ -1,8 +1,8 @@
 const { body, validationResult } = require('express-validator')
-const userServices = require('../services/user')
+const User = require('../collections/user')
 
 const emailIsAvailable = async (email = '') => {
-  const user = await userServices.findUserByEmail(email)
+  const user = await User.findOne({ email })
   if (user) {
     throw new Error('`email` is already in use')
   }
