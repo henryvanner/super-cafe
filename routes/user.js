@@ -13,7 +13,12 @@ router.get(
   validateUserExists,
   userControllers.handleGetRequest
 )
-router.put('/:id', userControllers.handlePutRequest)
+router.put(
+  '/:id',
+  validateObjectId,
+  validateUserExists,
+  userControllers.handlePutRequest
+)
 router.delete('/:id', userControllers.handleDeleteRequest)
 
 module.exports = router
