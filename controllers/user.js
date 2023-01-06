@@ -1,4 +1,5 @@
 const User = require('../collections/user')
+const userServices = require('../services/user')
 
 const handleGetRequest = async (req, res) => {
   try {
