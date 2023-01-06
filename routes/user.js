@@ -17,6 +17,7 @@ router.put(
   '/:id',
   validateObjectId,
   validateUserExists,
+  // TODO: validate data
   userControllers.handlePutRequest
 )
 router.delete('/:id', userControllers.handleDeleteRequest)
