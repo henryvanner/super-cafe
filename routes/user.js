@@ -20,6 +20,11 @@ router.put(
   // TODO: validate data
   userControllers.handlePutRequest
 )
-router.delete('/:id', userControllers.handleDeleteRequest)
+router.delete(
+  '/:id',
+  validateObjectId,
+  validateUserExists,
+  userControllers.handleDeleteRequest
+)
 
 module.exports = router

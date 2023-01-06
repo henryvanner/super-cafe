@@ -33,8 +33,15 @@ const handlePutRequest = async (req, res) => {
   }
 }
 
-const handleDeleteRequest = (req, res) => {
-  res.send('DELETE user ' + req.params.id)
+const handleDeleteRequest = async (req, res) => {
+  try {
+    const { id } = req.params
+    await User.findByIdAndDelete(id)
+    return res.status(204).end()
+  } catch (error) {
+    console.log(error)
+    return res.status(500).end()
+  }
 }
 
 module.exports = {
