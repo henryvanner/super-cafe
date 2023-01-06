@@ -9,6 +9,14 @@ const createUser = async ({ name, email, password }) => {
   return user
 }
 
+const updateUser = async (id, data) => {
+  const encryptedPassword = bcryptjs.encryptPassword(data.password)
+  data.password = encryptedPassword
+  const user = await User.findByIdAndUpdate(id, data, { new: true })
+  return user
+}
+
 module.exports = {
   createUser,
+  updateUser,
 }

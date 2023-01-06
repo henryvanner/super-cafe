@@ -23,8 +23,15 @@ const handlePostRequest = async (req, res) => {
   }
 }
 
-const handlePutRequest = (req, res) => {
-  res.send('PUT user ' + req.params.id)
+const handlePutRequest = async (req, res) => {
+  try {
+    const { id } = req.params
+    const user = await userServices.updateUser(id, req.body)
+    res.send(user)
+  } catch (error) {
+    console.log(error)
+    res.status(500).end()
+  }
 }
 
 const handleDeleteRequest = (req, res) => {
