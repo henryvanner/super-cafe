@@ -5,7 +5,7 @@ const handleGetRequest = async (req, res) => {
   try {
     const { id } = req.params
     const user = await User.findById(id)
-    return res.json(user)
+    res.json(user)
   } catch (error) {
     console.log(error)
     res.status(500).end()
@@ -37,10 +37,10 @@ const handleDeleteRequest = async (req, res) => {
   try {
     const { id } = req.params
     await User.findByIdAndDelete(id)
-    return res.status(204).end()
+    res.status(204).end()
   } catch (error) {
     console.log(error)
-    return res.status(500).end()
+    res.status(500).end()
   }
 }
 
