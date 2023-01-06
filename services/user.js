@@ -1,6 +1,7 @@
 const bcryptjs = require('./bcrypt')
 const User = require('../collections/user')
 
+// TODO: make sure only expected data is received
 const createUser = async ({ name, email, password }) => {
   const encryptedPassword = bcryptjs.encryptPassword(password)
   const data = { name, email, password: encryptedPassword }
