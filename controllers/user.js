@@ -16,7 +16,7 @@ const handleGetRequest = async (req, res) => {
 const handlePostRequest = async (req, res) => {
   try {
     const user = await userServices.createUser(req.body)
-    res.send(user)
+    res.json(user)
   } catch (error) {
     console.log(error)
     res.status(500).end()
@@ -27,7 +27,7 @@ const handlePutRequest = async (req, res) => {
   try {
     const { id } = req.params
     const user = await userServices.updateUser(id, req.body)
-    res.send(user)
+    res.json(user)
   } catch (error) {
     console.log(error)
     res.status(500).end()
